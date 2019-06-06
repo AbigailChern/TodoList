@@ -1,0 +1,27 @@
+// Check off Specific Todos By Clicking
+// $(parent element).on("click", "the element being applied", function())
+$("ul").on("click", "li", function(){
+	$(this).toggleClass("completed");
+});
+
+// Click on X to delete Todo
+$("ul").on("click", "span", function(event){
+	$(this).parent().fadeOut(500, function(){
+		$(this).remove();
+	});
+	event.stopPropagation();
+});
+
+$("input").keypress(function(event){
+	if (event.which === 13){
+		// Gradding new todo text from input
+		var todoText = $(this).val();
+		// create a new li and add to ul
+		$('ul').append("<li><span><i class='fas fa-trash'></i></span>" + todoText + "</li>");
+	}
+})
+
+$(".fa-plus").click(function(){
+	$("input").fadeToggle(100);
+})
+
